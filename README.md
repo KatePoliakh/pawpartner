@@ -33,12 +33,15 @@ PawPartner — это аналог "Тиндера" для котиков. Вы 
 ### Экран деталей
 ![Экран деталей](screenshots/detail_screen.png)
 
+### Главный экран из apk версии
+![Главный экран](screenshots/apk_home_screen.png)
+
 ---
 
 ## Скачать APK
 
 Вы можете скачать актуальную версию APK по ссылке:  
-[Скачать PawPartner APK](https://example.com/pawpartner.apk)
+[Скачать PawPartner APK](https://drive.google.com/file/d/1PtKsmQth_oZhh2nj4s-ic-PjI-jCBDB3/view?usp=sharing)
 
 ---
 
