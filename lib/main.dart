@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:pawpartner/screens/home_screen.dart';
+import 'package:pawpartner/di/service_locator.dart';
+import 'package:pawpartner/presentation/screens/home_screen/home_screen.dart';
 
 void main() async {
+  setupServiceLocator();
   runApp(MyApp());
 }
 

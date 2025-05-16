@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:pawpartner/models/cat_model.dart';
+import 'package:pawpartner/data/models/cat_dto.dart';
 
 class DetailScreen extends StatelessWidget {
   final Cat cat;
