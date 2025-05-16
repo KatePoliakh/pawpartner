@@ -11,17 +11,17 @@ class BreedFilterDropdown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final breeds = getIt<LikesService>().availableBreeds;
-    
+
     return BlocBuilder<LikedCatsCubit, List<LikedCat>>(
       builder: (context, cats) {
         return DropdownButton<String>(
           value: context.read<LikedCatsCubit>().selectedBreed,
           items: [
             const DropdownMenuItem(value: null, child: Text('All breeds')),
-            ...breeds.map((b) => DropdownMenuItem(value: b, child: Text(b)))
+            ...breeds.map((b) => DropdownMenuItem(value: b, child: Text(b))),
           ],
-          onChanged: (value) => 
-              context.read<LikedCatsCubit>().filterByBreed(value),
+          onChanged:
+              (value) => context.read<LikedCatsCubit>().filterByBreed(value),
         );
       },
     );

@@ -14,6 +14,10 @@ class LikeDislikeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return IconButton(icon: Icon(size: 40, icon), onPressed: onPressed, color: color);
+    return IconButton(
+      icon: Icon(size: 40, icon),
+      onPressed: onPressed,
+      color: color,
+    );
   }
 }

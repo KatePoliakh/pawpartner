@@ -61,23 +61,24 @@ class HomeScreenState extends State<HomeScreen>
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Ошибка сети'),
-        content: Text(message),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(ctx);
-              _fetchCat();
-            },
-            child: const Text('Повторить'),
+      builder:
+          (ctx) => AlertDialog(
+            title: const Text('Ошибка сети'),
+            content: Text(message),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(ctx);
+                  _fetchCat();
+                },
+                child: const Text('Повторить'),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('OK'),
+              ),
+            ],
           ),
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('OK'),
-          ),
-        ],
-      ),
     );
   }
 
@@ -85,10 +86,7 @@ class HomeScreenState extends State<HomeScreen>
     if (_currentCat == null) return;
 
     if (isLike) {
-      final likedCat = LikedCat(
-        cat: _currentCat!,
-        likedDate: DateTime.now(),
-      );
+      final likedCat = LikedCat(cat: _currentCat!, likedDate: DateTime.now());
       _likesService.addLikedCat(likedCat);
     }
 
@@ -104,9 +102,7 @@ class HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: HomeScreenAppBar(
-        likesCount: _likesService.likedCats.length,
-      ),
+      appBar: HomeScreenAppBar(likesCount: _likesService.likedCats.length),
       body: _buildBodyContent(),
     );
   }
@@ -122,14 +118,15 @@ class HomeScreenState extends State<HomeScreen>
       child: Column(
         children: [
           Expanded(
-            child: _currentCat == null
-                ? const Center(child: CircularProgressIndicator())
-                : SwipeableCatCard(
-                    cat: _currentCat!,
-                    animationController: _animationController,
-                    onSwipe: _handleSwipe,
-                    onCardTap: _navigateToDetailScreen,
-                  ),
+            child:
+                _currentCat == null
+                    ? const Center(child: CircularProgressIndicator())
+                    : SwipeableCatCard(
+                      cat: _currentCat!,
+                      animationController: _animationController,
+                      onSwipe: _handleSwipe,
+                      onCardTap: _navigateToDetailScreen,
+                    ),
           ),
           ActionButtonsPanel(
             onLike: () => _handleSwipe(true),
@@ -144,9 +141,7 @@ class HomeScreenState extends State<HomeScreen>
     if (_currentCat == null) return;
     Navigator.push(
       context,
-      MaterialPageRoute(
-        builder: (context) => DetailScreen(cat: _currentCat!),
-      ),
+      MaterialPageRoute(builder: (context) => DetailScreen(cat: _currentCat!)),
     );
   }
 

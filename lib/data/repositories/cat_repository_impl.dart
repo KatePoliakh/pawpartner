@@ -26,7 +26,6 @@ class CatRepositoryImpl implements CatRepository {
 
   @override
   Future<Either<Failure, List<String>>> getAllBreeds() {
- 
     throw UnimplementedError();
   }
 }

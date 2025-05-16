@@ -51,10 +51,11 @@ class LikedCatsScreen extends StatelessWidget {
               return ListView.builder(
                 padding: const EdgeInsets.all(16),
                 itemCount: cats.length,
-                itemBuilder: (ctx, i) => Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: LikedCatTile(cat: cats[i]),
-                ),
+                itemBuilder:
+                    (ctx, i) => Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8),
+                      child: LikedCatTile(cat: cats[i]),
+                    ),
               );
             },
           ),

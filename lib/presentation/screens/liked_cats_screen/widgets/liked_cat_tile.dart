@@ -27,10 +27,11 @@ class LikedCatTile extends StatelessWidget {
               width: 60,
               height: 60,
               fit: BoxFit.cover,
-              placeholder: (_, __) => Container(
-                color: Colors.brown[200],
-                child: const Center(child: CircularProgressIndicator()),
-              ),
+              placeholder:
+                  (_, __) => Container(
+                    color: Colors.brown[200],
+                    child: const Center(child: CircularProgressIndicator()),
+                  ),
             ),
           ),
           title: Text(
@@ -43,10 +44,7 @@ class LikedCatTile extends StatelessWidget {
           ),
           subtitle: Text(
             'Liked: ${_formatDate(cat.likedDate)}',
-            style: TextStyle(
-              color: Colors.brown[800],
-              fontSize: 14,
-            ),
+            style: TextStyle(color: Colors.brown[800], fontSize: 14),
           ),
           trailing: IconButton(
             icon: Icon(Icons.delete, color: Colors.brown[800]),

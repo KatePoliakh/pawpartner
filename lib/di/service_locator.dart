@@ -10,10 +10,10 @@ final getIt = GetIt.instance;
 void setupServiceLocator() {
   // Services
   getIt.registerLazySingleton<LikesService>(() => LikesService());
-  
+
   // API
   getIt.registerLazySingleton<CatApi>(() => CatApi());
-  
+
   // Repositories
   getIt.registerLazySingleton<CatRepository>(
     () => CatRepositoryImpl(getIt<CatApi>()),

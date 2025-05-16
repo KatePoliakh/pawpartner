@@ -36,16 +36,15 @@ class SwipeableCatCardState extends State<SwipeableCatCard> {
     _offsetAnimation = Tween<Offset>(
       begin: Offset.zero,
       end: Offset.zero,
-    ).animate(CurvedAnimation(
-      parent: widget.animationController,
-      curve: Curves.easeInOut,
-    ));
-
-    _opacityAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+    ).animate(
       CurvedAnimation(
         parent: widget.animationController,
-        curve: Curves.easeIn,
+        curve: Curves.easeInOut,
       ),
+    );
+
+    _opacityAnimation = Tween<double>(begin: 1.0, end: 0.0).animate(
+      CurvedAnimation(parent: widget.animationController, curve: Curves.easeIn),
     );
 
     _scaleAnimation = Tween<double>(begin: 1.0, end: 0.8).animate(
@@ -68,7 +67,8 @@ class SwipeableCatCardState extends State<SwipeableCatCard> {
   void _handleDragEnd(DragEndDetails details) {
     if (widget.animationController.value > 0.5 ||
         details.velocity.pixelsPerSecond.dx.abs() > 500) {
-      final isLike = widget.animationController.value > 0.5 ||
+      final isLike =
+          widget.animationController.value > 0.5 ||
           details.velocity.pixelsPerSecond.dx > 0;
       _triggerSwipeAnimation(isLike);
     } else {
@@ -81,10 +81,12 @@ class SwipeableCatCardState extends State<SwipeableCatCard> {
     _offsetAnimation = Tween<Offset>(
       begin: Offset.zero,
       end: endOffset,
-    ).animate(CurvedAnimation(
-      parent: widget.animationController,
-      curve: Curves.easeInOut,
-    ));
+    ).animate(
+      CurvedAnimation(
+        parent: widget.animationController,
+        curve: Curves.easeInOut,
+      ),
+    );
 
     widget.onSwipe(isLike);
   }
@@ -105,10 +107,7 @@ class SwipeableCatCardState extends State<SwipeableCatCard> {
                 opacity: _opacityAnimation.value,
                 child: FractionallySizedBox(
                   widthFactor: 0.8,
-                  child: CatCard(
-                    cat: widget.cat,
-                    onTap: widget.onCardTap,
-                  ),
+                  child: CatCard(cat: widget.cat, onTap: widget.onCardTap),
                 ),
               ),
             ),

@@ -11,7 +11,7 @@ class LikedCatsCubit extends Cubit<List<LikedCat>> {
   }
 
   void _onLikesChanged() => emit(_filterCats());
-  
+
   List<LikedCat> _filterCats() {
     return _likesService.likedCats.where((cat) {
       if (selectedBreed == null) return true;
