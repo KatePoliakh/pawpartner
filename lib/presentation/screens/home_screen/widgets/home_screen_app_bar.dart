@@ -21,12 +21,11 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
       ),
       backgroundColor: Colors.brown[100],
-      actions: [_buildLikesCounter(context)], // Передаем контекст
+      actions: [_buildLikesCounter(context)],
     );
   }
 
   Widget _buildLikesCounter(BuildContext context) {
-    // Добавляем параметр context
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
@@ -35,7 +34,7 @@ class HomeScreenAppBar extends StatelessWidget implements PreferredSizeWidget {
             icon: const Icon(Icons.favorite, color: Colors.red),
             onPressed:
                 () => Navigator.push(
-                  context, // Теперь context доступен
+                  context,
                   MaterialPageRoute(builder: (_) => const LikedCatsScreen()),
                 ),
           ),

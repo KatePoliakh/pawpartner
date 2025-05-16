@@ -16,8 +16,9 @@ class CatApi {
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body)[0];
-        if (data['breeds'].isEmpty)
+        if (data['breeds'].isEmpty) {
           throw const FormatException('Нет данных о породе');
+        }
         return Cat.fromJson(data);
       }
       throw HttpException('Код ошибки: ${response.statusCode}');

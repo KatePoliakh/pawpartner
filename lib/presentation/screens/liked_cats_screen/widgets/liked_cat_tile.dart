@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:flutter/material.dart';
 import 'package:pawpartner/core/services/likes_service.dart';
 import 'package:pawpartner/data/models/liked_cat_dto.dart';
