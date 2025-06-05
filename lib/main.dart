@@ -16,15 +16,13 @@ void main() async {
 
   try {
     await setupServiceLocator();
-    getIt<SyncService>(); 
+    getIt<SyncService>();
     runApp(const PawPartnerApp());
   } catch (e) {
     runApp(
       MaterialApp(
         home: Scaffold(
-          body: Center(
-            child: Text('Ошибка инициализации: ${e.toString()}'),
-          ),
+          body: Center(child: Text('Ошибка инициализации: ${e.toString()}')),
         ),
       ),
     );
@@ -44,10 +42,7 @@ class PawPartnerApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        appBarTheme: const AppBarTheme(
-          centerTitle: true,
-          elevation: 4,
-        ),
+        appBarTheme: const AppBarTheme(centerTitle: true, elevation: 4),
       ),
       home: StreamBuilder<ConnectivityResult>(
         stream: networkInfo.connectivity.onConnectivityChanged,

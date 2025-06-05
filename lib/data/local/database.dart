@@ -1,4 +1,3 @@
-// database.dart
 // ignore_for_file: depend_on_referenced_packages
 
 import 'dart:io';
@@ -7,7 +6,7 @@ import 'package:drift/native.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 import 'package:pawpartner/data/models/cat_dto.dart';
-import 'package:pawpartner/data/models/liked_cat_dto.dart' as dto; // Add alias
+import 'package:pawpartner/data/models/liked_cat_dto.dart' as dto;
 
 part 'database.g.dart';
 
@@ -58,11 +57,10 @@ class AppDatabase extends _$AppDatabase {
   }) async {
     final threshold = DateTime.now().subtract(ageThreshold);
     await (delete(cachedCats)
-          ..where((t) => t.lastFetched.isSmallerThanValue(threshold)))
-        .go();
+      ..where((t) => t.lastFetched.isSmallerThanValue(threshold))).go();
   }
 
-  Future<void> addLikedCat(dto.LikedCat cat) async { 
+  Future<void> addLikedCat(dto.LikedCat cat) async {
     await into(likedCats).insert(
       LikedCatsCompanion.insert(
         id: cat.cat.id,

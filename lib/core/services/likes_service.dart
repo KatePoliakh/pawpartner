@@ -1,16 +1,16 @@
-// likes_service.dart
 import 'package:flutter/foundation.dart';
 import 'package:pawpartner/data/local/database.dart' show AppDatabase;
 
 import 'package:pawpartner/data/models/cat_dto.dart';
 import 'package:pawpartner/data/models/liked_cat_dto.dart';
+// ignore: implementation_imports
 import 'package:shared_preferences/src/shared_preferences_legacy.dart';
 
 class LikesService extends ChangeNotifier {
   final AppDatabase _database;
   List<LikedCat> _likedCats = [];
 
-  LikesService(this._database, SharedPreferences mockPrefs); 
+  LikesService(this._database, SharedPreferences mockPrefs);
 
   List<LikedCat> get likedCats => _likedCats;
 
@@ -20,19 +20,20 @@ class LikesService extends ChangeNotifier {
 
   Future<void> _loadFromDatabase() async {
     final dbLikes = await _database.getAllLikedCats();
-    _likedCats = dbLikes
-        .map(
-          (likedCatData) => LikedCat(
-            cat: Cat(
-              id: likedCatData.id,
-              url: likedCatData.url,
-              breedName: likedCatData.breedName,
-              description: likedCatData.description,
-            ),
-            likedDate: likedCatData.likedDate,
-          ),
-        )
-        .toList();
+    _likedCats =
+        dbLikes
+            .map(
+              (likedCatData) => LikedCat(
+                cat: Cat(
+                  id: likedCatData.id,
+                  url: likedCatData.url,
+                  breedName: likedCatData.breedName,
+                  description: likedCatData.description,
+                ),
+                likedDate: likedCatData.likedDate,
+              ),
+            )
+            .toList();
     notifyListeners();
   }
 

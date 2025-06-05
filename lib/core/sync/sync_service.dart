@@ -27,6 +27,7 @@ class SyncService {
     for (final likedCat in localLikes) {
       try {
         await _api.sendLike(likedCat.id);
+        // ignore: empty_catches
       } catch (e) {}
     }
   }
@@ -36,6 +37,7 @@ class SyncService {
       for (int i = 0; i < 5; i++) {
         await _api.fetchRandomCat();
       }
+      // ignore: empty_catches
     } catch (e) {}
   }
 }

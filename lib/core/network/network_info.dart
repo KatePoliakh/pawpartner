@@ -9,5 +9,4 @@ class NetworkInfo {
     final result = await connectivity.checkConnectivity();
     return result != ConnectivityResult.none;
   }
-
 }

@@ -1,7 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pawpartner/core/services/likes_service.dart';
-import 'package:pawpartner/data/local/database.dart';
-import 'package:pawpartner/data/models/liked_cat_dto.dart';
 import 'package:pawpartner/data/models/liked_cat_dto.dart' as dto;
 
 class LikedCatsCubit extends Cubit<List<dto.LikedCat>> {

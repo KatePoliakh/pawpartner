@@ -11,10 +11,12 @@ class CatApi {
   final AppDatabase _database;
 
   CatApi(this._database);
-  
+
   Future<Cat> fetchRandomCat() async {
     try {
-      final url = Uri.parse('${ApiConfig.baseUrl}/images/search?has_breeds=true');
+      final url = Uri.parse(
+        '${ApiConfig.baseUrl}/images/search?has_breeds=true',
+      );
       final response = await http
           .get(url, headers: {'x-api-key': ApiConfig.apiKey})
           .timeout(const Duration(seconds: 10));
