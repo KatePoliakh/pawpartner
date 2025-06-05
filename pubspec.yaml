@@ -40,6 +40,12 @@ dependencies:
   get_it: ^7.6.0
   flutter_bloc: ^9.1.1
   dartz: ^0.10.1
+  connectivity_plus: ^3.0.3
+  shared_preferences: ^2.2.2
+  drift: ^2.13.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.1.1
+  path: ^1.9.0
 
 dev_dependencies:
   flutter_test:
@@ -52,6 +58,9 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
   flutter_launcher_icons: ^0.13.1
+  build_runner: ^2.4.4
+  drift_dev: ^2.13.0
+  mocktail: ^0.3.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

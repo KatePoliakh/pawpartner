@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:pawpartner/core/services/likes_service.dart';
 import 'package:pawpartner/data/api/cat_api.dart';
+import 'package:pawpartner/data/local/database.dart';
 import 'package:pawpartner/data/models/cat_dto.dart';
-import 'package:pawpartner/data/models/liked_cat_dto.dart';
+import 'package:pawpartner/data/models/liked_cat_dto.dart' as dto;
 import 'package:pawpartner/di/service_locator.dart';
 import 'package:pawpartner/presentation/screens/detail_screen/detail_screen.dart';
 import 'package:pawpartner/presentation/screens/home_screen/widgets/action_buttons_panel.dart';
@@ -24,7 +25,7 @@ class HomeScreenState extends State<HomeScreen>
   Cat? _currentCat;
   late AnimationController _animationController;
   final LikesService _likesService = getIt<LikesService>();
-  final CatApi _catApi = CatApi();
+  final CatApi _catApi = CatApi(getIt<AppDatabase>()); // Исправлено
 
   @override
   void initState() {
@@ -61,24 +62,23 @@ class HomeScreenState extends State<HomeScreen>
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder:
-          (ctx) => AlertDialog(
-            title: const Text('Ошибка сети'),
-            content: Text(message),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(ctx);
-                  _fetchCat();
-                },
-                child: const Text('Повторить'),
-              ),
-              TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: const Text('OK'),
-              ),
-            ],
+      builder: (ctx) => AlertDialog(
+        title: const Text('Ошибка сети'),
+        content: Text(message),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.pop(ctx);
+              _fetchCat();
+            },
+            child: const Text('Повторить'),
           ),
+          TextButton(
+            onPressed: () => Navigator.pop(ctx),
+            child: const Text('OK'),
+          ),
+        ],
+      ),
     );
   }
 
@@ -86,7 +86,10 @@ class HomeScreenState extends State<HomeScreen>
     if (_currentCat == null) return;
 
     if (isLike) {
-      final likedCat = LikedCat(cat: _currentCat!, likedDate: DateTime.now());
+      final likedCat = dto.LikedCat(
+        cat: _currentCat!, 
+        likedDate: DateTime.now() 
+      );
       _likesService.addLikedCat(likedCat);
     }
 
@@ -118,15 +121,14 @@ class HomeScreenState extends State<HomeScreen>
       child: Column(
         children: [
           Expanded(
-            child:
-                _currentCat == null
-                    ? const Center(child: CircularProgressIndicator())
-                    : SwipeableCatCard(
-                      cat: _currentCat!,
-                      animationController: _animationController,
-                      onSwipe: _handleSwipe,
-                      onCardTap: _navigateToDetailScreen,
-                    ),
+            child: _currentCat == null
+                ? const Center(child: CircularProgressIndicator())
+                : SwipeableCatCard(
+                    cat: _currentCat!,
+                    animationController: _animationController,
+                    onSwipe: _handleSwipe,
+                    onCardTap: _navigateToDetailScreen,
+                  ),
           ),
           ActionButtonsPanel(
             onLike: () => _handleSwipe(true),
@@ -141,7 +143,8 @@ class HomeScreenState extends State<HomeScreen>
     if (_currentCat == null) return;
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => DetailScreen(cat: _currentCat!)),
+      MaterialPageRoute(
+          builder: (context) => DetailScreen(cat: _currentCat!)),
     );
   }
 

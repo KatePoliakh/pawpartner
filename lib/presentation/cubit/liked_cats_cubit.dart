@@ -1,8 +1,10 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pawpartner/core/services/likes_service.dart';
+import 'package:pawpartner/data/local/database.dart';
 import 'package:pawpartner/data/models/liked_cat_dto.dart';
+import 'package:pawpartner/data/models/liked_cat_dto.dart' as dto;
 
-class LikedCatsCubit extends Cubit<List<LikedCat>> {
+class LikedCatsCubit extends Cubit<List<dto.LikedCat>> {
   final LikesService _likesService;
   String? selectedBreed;
 
@@ -12,10 +14,10 @@ class LikedCatsCubit extends Cubit<List<LikedCat>> {
 
   void _onLikesChanged() => emit(_filterCats());
 
-  List<LikedCat> _filterCats() {
+  List<dto.LikedCat> _filterCats() {
     return _likesService.likedCats.where((cat) {
       if (selectedBreed == null) return true;
-      return cat.cat.breedName == selectedBreed;
+      return cat.breedName == selectedBreed;
     }).toList();
   }
 
